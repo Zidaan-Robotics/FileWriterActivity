@@ -48,18 +48,29 @@ public class MyFileWriter {
         }
     }
 
-    public void makeHiddenFile() throws IOException {
+    public static void makeHiddenFile() throws IOException {
         File f = new File(".secret.txt");
-        f.createNewFile();
-        FileWriter w = new FileWriter(f);
-        w.write("supersecretpassword");
+
+        if (!f.exists()) {
+            f.createNewFile();
+        }
+
+        try (FileWriter w = new FileWriter(f)) {
+            w.write("supersecretpassword");
+        }
     }
 
-    public void makeFolderFile() throws IOException {
-        File f = new File("\\\\wsl.localhost\\Ubuntu\\.supersecretfolder\\ultrahiddenfile");
+    public static void makeFolderFile() throws IOException {
+        File f = new File(
+                "//wsl.localhost/Ubuntu/home/zidaa/FileWriterActivity/.supersecretfolder/ultrahiddenfile");
+
+
         f.createNewFile();
-        FileWriter w = new FileWriter(f);
-        w.write("abcdefghijklmnopqrstuv+1");
+        System.out.println("runs");
+        try (FileWriter w = new FileWriter(
+                "//wsl.localhost/Ubuntu/home/zidaa/FileWriterActivity/.supersecretfolder/ultrahiddenfile")) {
+            w.write("abcdefghijklmnopqrstuv+1");
+        }
     }
 
 
