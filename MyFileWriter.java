@@ -82,7 +82,11 @@ public class MyFileWriter {
         printFileSize(filename);
     }
 
-    
+
+    // sysouts some string
+    public String toString() {
+        return "dont even have a constructor yet :wilted_rose:";
+    }
 
 
 
