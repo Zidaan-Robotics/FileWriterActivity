@@ -48,6 +48,7 @@ public class MyFileWriter {
         }
     }
 
+    // makes a hidden file with a secret password inside
     public static void makeHiddenFile() throws IOException {
         File f = new File(".secret.txt");
 
@@ -60,6 +61,7 @@ public class MyFileWriter {
         }
     }
 
+    // makes a file within a folder with some jibberish (the alphabet)
     public static void makeFolderFile() throws IOException {
         File f = new File(
                 "//wsl.localhost/Ubuntu/home/zidaa/FileWriterActivity/.supersecretfolder/ultrahiddenfile");
@@ -73,16 +75,22 @@ public class MyFileWriter {
         }
     }
 
+    // prints the size of the file, fileName
     private static void printFileSize(String fileName) {
         File f = new File(fileName);
         System.out.println(f.length());
     }
 
+    // calls printFileSize
     public static void fileSizeTester(String filename) {
         printFileSize(filename);
     }
 
-    
+
+    // sysouts some string
+    public String toString() {
+        return "dont even have a constructor yet :wilted_rose:";
+    }
 
 
 
