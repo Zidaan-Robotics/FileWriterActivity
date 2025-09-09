@@ -73,5 +73,15 @@ public class MyFileWriter {
         }
     }
 
+    private static void printFileSize(String fileName) {
+        File f = new File(fileName);
+        System.out.println(f.length());
+    }
+
+    public static void fileSizeTester(String filename) {
+        printFileSize(filename);
+    }
+
+
 
 }
