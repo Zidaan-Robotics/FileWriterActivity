@@ -9,7 +9,9 @@ public class Tester {
         // System.out.println("rip ");
         // }
 
-        MyFileWriter.fileSizeTester("file.txt");
+        // MyFileWriter.fileSizeTester("file.txt");
+
+        MyFileWriter.fileSizeTester("1.txt", "2.txt","3.txt");
 
 
 
