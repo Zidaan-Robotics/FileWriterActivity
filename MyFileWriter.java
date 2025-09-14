@@ -76,16 +76,32 @@ public class MyFileWriter {
     }
 
     // prints the size of the file, fileName
-    private static void printFileSize(String fileName) {
-        File f = new File(fileName);
-        System.out.println(f.length());
+    // private static void printFileSize(String fileName) {
+    //     File f = new File(fileName);
+    //     System.out.println(f.length());
+    // }
+
+    //prints the size of all the files
+    private static void printFileSize(String... fileNames) {
+    long totalSize = 0;
+    for (String fileName : fileNames) {
+        File file = new File(fileName);
+        if (file.exists()) {
+            totalSize += file.length();
+        }
+    }
+    System.out.println("Total size of all files: " + totalSize + " bytes");
     }
 
-    // calls printFileSize
-    public static void fileSizeTester(String filename) {
-        printFileSize(filename);
-    }
+    // // calls printFileSize
+    // public static void fileSizeTester(String filename) {
+    //     printFileSize(filename);
+    // }
 
+    //calls printFileSize
+    public static void fileSizeTester(String... fileNames){
+        printFileSize(fileNames);
+    }
 
     // sysouts some string
     public String toString() {
