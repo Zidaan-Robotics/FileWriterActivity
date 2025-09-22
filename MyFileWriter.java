@@ -1,6 +1,9 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class MyFileWriter {
     public static void main(String[] args) {
@@ -81,6 +84,18 @@ public class MyFileWriter {
         System.out.println(f.length());
     }
 
+    public static String returnFileContents(String fileName)
+            throws FileNotFoundException, IOException {
+        File f = new File(fileName);
+        FileReader r = new FileReader(f);
+        StringBuilder s = new StringBuilder();
+        while (r.ready()) {
+            s.append((char) r.read());
+        }
+        return s.toString();
+
+    }
+
     // calls printFileSize
     public static void fileSizeTester(String filename) {
         printFileSize(filename);
@@ -90,6 +105,44 @@ public class MyFileWriter {
     // sysouts some string
     public String toString() {
         return "dont even have a constructor yet :wilted_rose:";
+    }
+
+
+    // From:
+    // Alexander Obregon
+    public static String generateSHA256Hash(String input) {
+        try {
+            // Create a MessageDigest instance for SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+            // Perform the hash computation
+            byte[] encodedhash = digest.digest(input.getBytes());
+
+            // Convert byte array into a hexadecimal string
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : encodedhash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String hashFile(String file) throws FileNotFoundException, IOException {
+        File f = new File(file);
+        FileReader reader = new FileReader(file);
+        StringBuilder s = new StringBuilder();
+        while (reader.ready()) {
+            s.append((char) reader.read());
+        }
+        return generateSHA256Hash(s.toString());
+
+
     }
 
 
